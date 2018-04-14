@@ -29,16 +29,23 @@ class App extends Component {
       city: user.city,
       id: this.state.users.length +1
     });
-    console.log(this.state);
     this.setState({
       users:this.state.users
+    })
+  }
+  onDelete(id){
+    let users = this.state.users.filter((value)=>{
+      return value.id !== id;
+    })
+    this.setState({
+      users: users
     })
   }
   render() {
     return (
       <div>
         <AddUser addUser={this.handleAddUser.bind(this)}/>
-        <Users users={this.state.users}/>
+        <Users users={this.state.users} onDelete={this.onDelete.bind(this)}/>
       </div>
     );
   }
